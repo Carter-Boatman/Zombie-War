@@ -16,10 +16,8 @@ public class ZombieWar {
         // Generate between 3 and 10 zombies
         int numZombies = rand.nextInt(8) + 3;
 
-        // List of survivors
-        ArrayList<Survivor> survivors = new ArrayList<>();
-
-        // Randomly create survivor types
+        // Creates and populates Survivor List
+        ArrayList<Character> survivors = new ArrayList<>();
         for (int i = 0; i < numSurvivors; i++) {
             int type = rand.nextInt(3); // 0 = Scientist, 1 = Civilian, 2 = Soldier
             switch (type) {
@@ -35,58 +33,73 @@ public class ZombieWar {
             }
         }
 
-        // List of zombies
-        ArrayList<Zombie> zombies = new ArrayList<>();
-
-        // Randomly create zombie types
+        // Creates and populates Zombie List
+        ArrayList<Character> zombies = new ArrayList<>();
         for (int i = 0; i < numZombies; i++) {
-            int type = rand.nextInt(3); // 0 = Common, 1 = Infected, 2 = Tank
+            int type = rand.nextInt(2); // 0 = Common Infected, 1 = Tank
             switch (type) {
                 case 0:
-                    zombies.add(new Common("Common_" + i));
+                    zombies.add(new CommonInfected("Common_Infected_" + i));
                     break;
                 case 1:
-                    zombies.add(new Infected("Infected_" + i));
-                    break;
-                case 2:
                     zombies.add(new Tank("Tank_" + i));
                     break;
             }
         }
 
-        // Display starting info
-        System.out.println("\nWe have " + numSurvivors + " survivors trying to make it to safety.");
-        System.out.println("But there are " + numZombies + " zombies waiting for them.");
+        // Army objects created using corresponding lists
+        Army survivorArmy = new Army("Survivor", survivors);
+        Army zombieArmy = new Army("Zombie", zombies);
+
+        // Counts the number of specific units in survivor army
+        int civilianCount = 0;
+        int soldierCount = 0;
+        int scientistCount = 0;
+        for (Character survivor : survivors) {
+            if (survivor instanceof Civilian) {
+                civilianCount++;
+            } else if (survivor instanceof Soldier) {
+                soldierCount++;
+            } else {
+                scientistCount++;
+            }
+        }
+
+        // Counts the number of specific units in zombie army
+        int commonCount = 0;
+        int tankCount = 0;
+        for (Character zombie : zombies) {
+            if (zombie instanceof CommonInfected) {
+                commonCount++;
+            } else {
+                tankCount++;
+            }
+        }
+
+        // Display starting info including character type amounts
+        System.out.println("\nWe have " + numSurvivors + " survivors trying to make it to safety (" + scientistCount + " scientist, " + civilianCount + " civilian, " + soldierCount + " soldier)\n");
+        System.out.println("But there are " + numZombies + " zombies waiting for them (" + commonCount + " common infected, " + tankCount + " tank)\n");
 
         // The battle continues until one side is gone
         while (!survivors.isEmpty() && !zombies.isEmpty()) {
 
             // Each survivor attacks each zombie
-            for (Survivor s : survivors) {
-                for (Zombie z : zombies) {
-                    if (z.isAlive()) {
-                        z.takeDamage(s.getAttack());
-                    }
-                }
-            }
-
-            // Remove dead zombies
-            zombies.removeIf(z -> !z.isAlive());
+            survivorArmy.initiateAttack(zombieArmy);
+            zombies.removeIf(z -> !z.isAlive()); // Remove dead zombies
 
             // Each zombie attacks each survivor
-            for (Zombie z : zombies) {
-                for (Survivor s : survivors) {
-                    if (s.isAlive()) {
-                        s.takeDamage(z.getAttack());
-                    }
-                }
-            }
+            zombieArmy.initiateAttack(survivorArmy);
+            survivors.removeIf(s -> !s.isAlive()); // Remove dead survivors
 
             // Remove dead survivors
             survivors.removeIf(s -> !s.isAlive());
         }
 
         // Display final survivor count
-        System.out.println("\nIt seems " + survivors.size() + " survivors have made it to safety.");
+        if (!survivors.isEmpty()) {
+            System.out.println("\nIt seems " + survivors.size() + " survivors have made it to safety.");
+        } else {
+            System.out.println("\nNone of the survivors made it.");
+        }
     }
 }
