@@ -22,13 +22,13 @@ public class ZombieWar {
             int type = rand.nextInt(3); // 0 = Scientist, 1 = Civilian, 2 = Soldier
             switch (type) {
                 case 0:
-                    survivors.add(new Scientist("Scientist_" + i));
+                    survivors.add(new Scientist("Scientist #" + i));
                     break;
                 case 1:
-                    survivors.add(new Civilian("Civilian_" + i));
+                    survivors.add(new Civilian("Civilian #" + i));
                     break;
                 case 2:
-                    survivors.add(new Soldier("Soldier_" + i));
+                    survivors.add(new Soldier("Soldier #" + i));
                     break;
             }
         }
@@ -39,10 +39,10 @@ public class ZombieWar {
             int type = rand.nextInt(2); // 0 = Common Infected, 1 = Tank
             switch (type) {
                 case 0:
-                    zombies.add(new CommonInfected("Common_Infected_" + i));
+                    zombies.add(new CommonInfected("Common Infected #" + i));
                     break;
                 case 1:
-                    zombies.add(new Tank("Tank_" + i));
+                    zombies.add(new Tank("Tank #" + i));
                     break;
             }
         }
@@ -77,8 +77,8 @@ public class ZombieWar {
         }
 
         // Display starting info including character type amounts
-        System.out.println("\nWe have " + numSurvivors + " survivors trying to make it to safety (" + scientistCount + " scientist, " + civilianCount + " civilian, " + soldierCount + " soldier)\n");
-        System.out.println("But there are " + numZombies + " zombies waiting for them (" + commonCount + " common infected, " + tankCount + " tank)\n");
+        System.out.println("\nWe have " + numSurvivors + " survivors trying to make it to safety (" + scientistCount + " Scientist, " + civilianCount + " Civilian, " + "and " + soldierCount + " Soldier).\n");
+        System.out.println("But there are " + numZombies + " zombies waiting for them (" + commonCount + " Common Infected, " + "and " + tankCount + " Tank).\n");
 
         // The battle continues until one side is gone
         while (!survivors.isEmpty() && !zombies.isEmpty()) {
