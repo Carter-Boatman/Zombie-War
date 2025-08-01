@@ -91,8 +91,6 @@ public class ZombieWar {
             zombieArmy.initiateAttack(survivorArmy);
             survivors.removeIf(s -> !s.isAlive()); // Remove dead survivors
 
-            // Remove dead survivors
-            survivors.removeIf(s -> !s.isAlive());
         }
 
         // Display final survivor count
@@ -103,3 +101,4 @@ public class ZombieWar {
         }
     }
 }
+
