@@ -60,7 +60,7 @@ public class ZombieWar {
     // Optional spooky ASCII banner.
     private static void asciiBanner() {
         System.out.println(RED +
-            "\r\n"
+            "\r\n\n"
             + "▒███████▒ ▒█████   ███▄ ▄███▓ ▄▄▄▄    ██▓▓█████        █     █░ ▄▄▄       ██▀███  \r\n"
             + "▒ ▒ ▒ ▄▀░▒██▒  ██▒▓██▒▀█▀ ██▒▓█████▄ ▓██▒▓█   ▀       ▓█░ █ ░█░▒████▄    ▓██ ▒ ██▒\r\n"
             + "░ ▒ ▄▀▒░ ▒██░  ██▒▓██    ▓██░▒██▒ ▄██▒██▒▒███         ▒█░ █ ░█ ▒██  ▀█▄  ▓██ ░▄█ ▒\r\n"
@@ -79,7 +79,7 @@ public class ZombieWar {
         clearScreen();
         asciiBanner();
         System.out.println(RED);
-        typewriter("Can the survivors outlast the zombies and reach safety in the epic war game?\n\n", 30);
+        typewriter("Can the survivors outlast the zombies and reach safety in this epic war game?\n\n", 30);
         suspenseDots(3, 350); // Prints "..." slowly.
         System.out.println();
         waitForEnter("\nPress ENTER if you dare...");
@@ -200,6 +200,17 @@ public class ZombieWar {
         } while (playAgain);
 
         // This final message thanks the player for playing once they choose not to play again.
-        System.out.println("\nThanks for playing Zombie War!");
-    }
+        System.out.println(RED +
+                "\r\n\n\n"
++ "▄▄▄█████▓ ██░ ██  ▄▄▄       ███▄    █  ██ ▄█▀  ██████      █████▒▒█████   ██▀███      ██▓███   ██▓    ▄▄▄     ▓██   ██▓ ██▓ ███▄    █   ▄████     ▐██\r\n"
++ "▓  ██▒ ▓▒▓██░ ██▒▒████▄     ██ ▀█   █  ██▄█▒ ▒██    ▒    ▓██   ▒▒██▒  ██▒▓██ ▒ ██▒   ▓██░  ██▒▓██▒   ▒████▄    ▒██  ██▒▓██▒ ██ ▀█   █  ██▒ ▀█▒    ▐██▌\r\n" 
++ "▒ ▓██░ ▒░▒██▀▀██░▒██  ▀█▄  ▓██  ▀█ ██▒▓███▄░ ░ ▓██▄      ▒████ ░▒██░  ██▒▓██ ░▄█ ▒   ▓██░ ██▓▒▒██░   ▒██  ▀█▄   ▒██ ██░▒██▒▓██  ▀█ ██▒▒██░▄▄▄░    ▐██▌\r\n"  
++ "░ ▓██▓ ░ ░▓█ ░██ ░██▄▄▄▄██ ▓██▒  ▐▌██▒▓██ █▄   ▒   ██▒   ░▓█▒  ░▒██   ██░▒██▀▀█▄     ▒██▄█▓▒ ▒▒██░   ░██▄▄▄▄██  ░ ▐██▓░░██░▓██▒  ▐▌██▒░▓█  ██▓    ▓██▒\r\n" 
++ "  ▒██▒ ░ ░▓█▒░██▓ ▓█   ▓██▒▒██░   ▓██░▒██▒ █▄▒██████▒▒   ░▒█░   ░ ████▓▒░░██▓ ▒██▒   ▒██▒ ░  ░░██████▒▓█   ▓██▒ ░ ██▒▓░░██░▒██░   ▓██░░▒▓███▀▒    ▒▄▄\r\n"
++ "  ▒ ░░    ▒ ░░▒░▒ ▒▒   ▓▒█░░ ▒░   ▒ ▒ ▒ ▒▒ ▓▒▒ ▒▓▒ ▒ ░    ▒ ░   ░ ▒░▒░▒░ ░ ▒▓ ░▒▓░   ▒▓▒░ ░  ░░ ▒░▓  ░▒▒   ▓▒█░  ██▒▒▒ ░▓  ░ ▒░   ▒ ▒  ░▒   ▒     ░▀▀▒\r\n"
++ "    ░     ▒ ░▒░ ░  ▒   ▒▒ ░░ ░░   ░ ▒░░ ░▒ ▒░░ ░▒  ░ ░    ░       ░ ▒ ▒░   ░▒ ░ ▒░   ░▒ ░     ░ ░ ▒  ░ ▒   ▒▒ ░▓██ ░▒░  ▒ ░░ ░░   ░ ▒░  ░   ░     ░  ░\r\n"
++ "  ░       ░  ░░ ░  ░   ▒      ░   ░ ░ ░ ░░ ░ ░  ░  ░      ░ ░   ░ ░ ░ ▒    ░░   ░    ░░         ░ ░    ░   ▒   ▒ ▒ ░░   ▒ ░   ░   ░ ░ ░ ░   ░        ░\r\n"
++ "          ░  ░  ░      ░  ░         ░ ░  ░         ░                ░ ░     ░                     ░  ░     ░  ░░ ░      ░           ░       ░     ░░ ░\r\n"
+                + RESET);
+        }
 }
