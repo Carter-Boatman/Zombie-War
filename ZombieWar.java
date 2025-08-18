@@ -97,8 +97,8 @@ public class ZombieWar {
             // This generates a random number of survivors between 5 and 20.
             int numSurvivors = RNG.nextInt(16) + 5;
 
-            // This generates a random number of zombies between 3 and 10.
-            int numZombies = RNG.nextInt(8) + 3;
+            // This generates a random number of zombies between 5 and 20.
+            int numZombies = RNG.nextInt(16) + 5;
 
             // This creates an ArrayList to hold all survivor characters.
             ArrayList<Character> survivors = new ArrayList<>();
@@ -114,11 +114,18 @@ public class ZombieWar {
             // This creates an ArrayList to hold all zombie characters.
             ArrayList<Character> zombies = new ArrayList<>();
 
-            // This loop creates zombies and randomly assigns them as CommonInfected or Tanks.
+            // Creates a MutationList object to generate and store the mutation list.
+            MutationList mutationList = new MutationList();
+            List<Mutation> mutations = mutationList.generateMutations(numZombies, numZombies + 5);
+
+            // Creates zombies and randomly assigns them as CommonInfected or Tanks along with a random mutation.
             for (int j = 0; j < numZombies; j++) {
+                int mutationNumber = RNG.nextInt(6); // Gets random number for mutation
+                Mutation mutation = mutations.get(mutationNumber); // Chooses mutation based on the number
+
                 int pick = RNG.nextInt(2); // Randomly choose a zombie type.
-                if (pick == 0) zombies.add(new CommonInfected("Infected" + " " + (j + 1))); // Add a Common Infected.
-                else zombies.add(new Tank("Tank" + " " + (j + 1))); // Add a Tank zombie.
+                if (pick == 0) zombies.add(new CommonInfected("Infected" + " " + (j + 1), mutation)); // Add a Common Infected.
+                else zombies.add(new Tank("Tank" + " " + (j + 1), mutation)); // Add a Tank zombie.
             }
 
             // This creates a WeaponCache object to generate and store weapons for survivors.
@@ -138,11 +145,8 @@ public class ZombieWar {
             // This displays the total number of survivors.
             System.out.println("\nSurvivors: " + survivors.size());
 
-            // This displays the total number of zombies.
-            System.out.println("Zombies: " + zombies.size());
-
             // This displays the list of weapons assigned to each survivor.
-            System.out.println("\nWeapons assigned to survivors:\n");
+            System.out.println("Weapons assigned to survivors:\n");
             for (Character c : survivors) {
                 if (c instanceof Survivor) {
                     Weapon w = ((Survivor) c).getWeapon(); // Get the survivor's weapon.
@@ -150,6 +154,16 @@ public class ZombieWar {
                     System.out.println(" - " + c.getName() + " -> " + wText); // Print survivor and weapon info.
                 }
             }
+
+            // This displays the total number of zombies.
+            System.out.println("\nZombies: " + zombies.size());
+
+            // Displays all of the zombies and their mutations
+            System.out.println("Mutations applied to zombies:\n");
+            for (Character c : zombies) {
+                System.out.println(c);
+            }
+
             System.out.println();
 
             // This creates an Army object for survivors containing all survivor characters.
@@ -163,15 +177,17 @@ public class ZombieWar {
 
             // This loop continues as long as both armies still have living members.
             while (survivorArmy.hasLiving() && zombieArmy.hasLiving()) {
-                System.out.println("\n--- Round " + round + " ---\n"); // Print the round number.
+                System.out.println("\n********** Round " + round + " **********\n"); // Print the round number.
 
                 // This makes the survivors attack the zombies first.
+                System.out.println("--- SURVIVORS ATTACK! ---");
                 survivorArmy.initiateAttack(zombieArmy);
 
                 // This checks if all zombies have been defeated and ends the battle if so.
                 if (!zombieArmy.hasLiving()) break;
 
                 // This makes the zombies attack the survivors next.
+                System.out.println("--- ZOMBIES ATTACK! ---");
                 zombieArmy.initiateAttack(survivorArmy);
 
                 // This removes any dead survivors from the survivor army.
