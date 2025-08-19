@@ -12,9 +12,10 @@ public class MutationList {
     // All available mutations
     public static List<Mutation> mutationPool() {
         List<Mutation> pool = new ArrayList<>();
-        pool.add(new Mutation("Feral", 6, 0.2));
-        pool.add(new Mutation("Spiky", 4, 1));
-        pool.add(new Mutation("Fresh", 2, 0.2));
+        pool.add(new Mutation("Feral", 3.5, 0.2)); //reduce damage mult from 6 to 3.5
+        pool.add(new Mutation("Spiky", 2, 1)); //reduced damage mult from 4 to 2
+        pool.add(new Mutation("Fresh", 2, 0.4)); //reduced damage mult from 3 to 2 and increased health mult from 0.2 to 0.4
+        pool.add(new Mutation("Unmutated", 1, 1)); //for creating normal zombies
         // MORE MUTATIONS CAN BE ADDED HERE
         return pool;
     }
