@@ -120,7 +120,7 @@ public class ZombieWar {
 
             // Creates zombies and randomly assigns them as CommonInfected or Tanks along with a random mutation.
             for (int j = 0; j < numZombies; j++) {
-                int mutationNumber = RNG.nextInt(6); // Gets random number for mutation
+                int mutationNumber = RNG.nextInt(5); // Gets random number for mutation
                 Mutation mutation = mutations.get(mutationNumber); // Chooses mutation based on the number
 
                 int pick = RNG.nextInt(2); // Randomly choose a zombie type.

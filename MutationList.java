@@ -12,11 +12,10 @@ public class MutationList {
     // All available mutations
     public static List<Mutation> mutationPool() {
         List<Mutation> pool = new ArrayList<>();
-        pool.add(new Mutation("Feral", 3.5, 0.2)); //reduce damage mult from 6 to 3.5
-        pool.add(new Mutation("Spiky", 2, 1)); //reduced damage mult from 4 to 2
-        pool.add(new Mutation("Fresh", 2, 0.4)); //reduced damage mult from 3 to 2 and increased health mult from 0.2 to 0.4
-        pool.add(new Mutation("Unmutated", 1, 1)); //for creating normal zombies
-        
+        pool.add(new Mutation("Feral", 4, 0.2)); // x 4 damage, +20% health
+        pool.add(new Mutation("Spiky", 2, 1)); // x 2 damage, no health change
+        pool.add(new Mutation("Fresh", 2, 0.4)); // x 2 damage, +40% health
+        pool.add(new Mutation("Unmutated", 1, 1)); // for creating normal zombies
         return pool;
     }
 
@@ -30,11 +29,5 @@ public class MutationList {
         }
         Collections.shuffle(list, rand);
         return list;
-    }
-
-    // Picks a mutation from the list or returns null if the list is empty
-    public Mutation pickMutation(List<Mutation> list) {
-        if (list.isEmpty()) return null;
-        return list.remove(0);
     }
 }

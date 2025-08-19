@@ -28,6 +28,8 @@ public class Mutation {
     // Returns a summary of the damage and accuracy.
     @Override
     public String toString() {
-        return name + " (Damage Buff: X" + damageMultiplier + ", Health Buff: +" + (int)(100 * healthMultiplier) +"%)";
+        String mutationString = name + " (Damage Buff: X" + damageMultiplier + ", Health Buff: +" + (int)(100 * healthMultiplier) +"%)";;
+        if (healthMultiplier == 1) { mutationString = name + " (Damage Buff: X" + damageMultiplier + ", Health Buff: None)"; } // Output for if there is no health change
+        return mutationString;
     }
 }
