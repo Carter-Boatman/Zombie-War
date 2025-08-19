@@ -16,7 +16,7 @@ public class MutationList {
         pool.add(new Mutation("Spiky", 2, 1)); //reduced damage mult from 4 to 2
         pool.add(new Mutation("Fresh", 2, 0.4)); //reduced damage mult from 3 to 2 and increased health mult from 0.2 to 0.4
         pool.add(new Mutation("Unmutated", 1, 1)); //for creating normal zombies
-        // MORE MUTATIONS CAN BE ADDED HERE
+        
         return pool;
     }
 
